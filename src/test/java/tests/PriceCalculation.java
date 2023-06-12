@@ -10,15 +10,15 @@ public class PriceCalculation extends BaseTest{
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddOrRemoveByArray(itemNames, true, 0);
+        psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
         cp.actionClickCheckout();
         CheckoutInformation ci = new CheckoutInformation(driver);
         ci.fillFormAndSubmit(firstName, lastName, zipCode);
         CheckoutOverview co = new CheckoutOverview(driver);
-        co.assertEquals(co.isInCartByArray(itemNames), true);
-        co.assertEquals(co.isPriceMatchByArray(itemNames, prices[0]), true);
+        co.assertEquals(co.isInCartByArray(itemsNames[0]), true);
+        co.assertEquals(co.isPriceMatchByArray(itemsNames[0], prices[0]), true);
         co.assertEquals(co.isTotalPricesMatch(prices[0]), true);
         co.assertEquals(co.isTaxCalc(taxDivision, pricesSums[0]), true);
     }
@@ -28,16 +28,16 @@ public class PriceCalculation extends BaseTest{
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddOrRemoveByArray(itemNames, true, 0);
-        psp.actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], false, itemNames.length);
+        psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0);
+        psp.actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], false, itemsNames[0].length);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
         cp.actionClickCheckout();
         CheckoutInformation ci = new CheckoutInformation(driver);
         ci.fillFormAndSubmit(firstName, lastName, zipCode);
         CheckoutOverview co = new CheckoutOverview(driver);
-        co.assertEquals(co.isInCartByArray(updatedArrays[0]), true);
-        co.assertEquals(co.isPriceMatchByArray(updatedArrays[0], prices[1]), true);
+        co.assertEquals(co.isInCartByArray(itemsNames[1]), true);
+        co.assertEquals(co.isPriceMatchByArray(itemsNames[1], prices[1]), true);
         co.assertEquals(co.isTotalPricesMatch(prices[1]), true);
         co.assertEquals(co.isTaxCalc(taxDivision, pricesSums[1]), true);
     }
@@ -47,18 +47,18 @@ public class PriceCalculation extends BaseTest{
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddOrRemoveByArray(itemNames, true, 0);
-        psp.actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], false, itemNames.length);
-        psp.assertEquals(psp.actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], true, updatedArrays[0].length), true);
+        psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0);
+        psp.actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], false, itemsNames[0].length);
+        psp.assertEquals(psp.actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], true, itemsNames[1].length), true);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
-        cp.clickRemoveByArray(partiallyRemoveArrays[1], itemNames.length);
+        cp.clickRemoveByArray(partiallyRemoveArrays[1], itemsNames[0].length);
         cp.actionClickCheckout();
         CheckoutInformation ci = new CheckoutInformation(driver);
         ci.fillFormAndSubmit(firstName, lastName, zipCode);
         CheckoutOverview co = new CheckoutOverview(driver);
-        co.assertEquals(co.isInCartByArray(updatedArrays[1]), true);
-        co.assertEquals(co.isPriceMatchByArray(updatedArrays[1], prices[2]), true);
+        co.assertEquals(co.isInCartByArray(itemsNames[2]), true);
+        co.assertEquals(co.isPriceMatchByArray(itemsNames[2], prices[2]), true);
         co.assertEquals(co.isTotalPricesMatch(prices[2]), true);
         co.assertEquals(co.isTaxCalc(taxDivision, pricesSums[2]), true);
     }
@@ -68,23 +68,23 @@ public class PriceCalculation extends BaseTest{
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddOrRemoveByArray(itemNames, true, 0);
-        psp.actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], false, itemNames.length);
-        psp.assertEquals(psp.actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], true, updatedArrays[0].length), true);
+        psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0);
+        psp.actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], false, itemsNames[0].length);
+        psp.assertEquals(psp.actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], true, itemsNames[1].length), true);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
-        cp.clickRemoveByArray(partiallyRemoveArrays[1], itemNames.length);
+        cp.clickRemoveByArray(partiallyRemoveArrays[1], itemsNames[0].length);
         cp.refresh();
         cp.logout();
         lp.login(username, password);
         psp.actionClickCart();
-        cp.assertEquals(cp.isInCartByArray(updatedArrays[1]), true);
+        cp.assertEquals(cp.isInCartByArray(itemsNames[2]), true);
         cp.actionClickCheckout();
         CheckoutInformation ci = new CheckoutInformation(driver);
         ci.fillFormAndSubmit(firstName, lastName, zipCode);
         CheckoutOverview co = new CheckoutOverview(driver);
-        co.assertEquals(co.isInCartByArray(updatedArrays[1]), true);
-        co.assertEquals(co.isPriceMatchByArray(updatedArrays[1], prices[2]), true);
+        co.assertEquals(co.isInCartByArray(itemsNames[2]), true);
+        co.assertEquals(co.isPriceMatchByArray(itemsNames[2], prices[2]), true);
         co.assertEquals(co.isTotalPricesMatch(prices[2]), true);
         co.assertEquals(co.isTaxCalc(taxDivision, pricesSums[2]), true);
     }
@@ -94,11 +94,11 @@ public class PriceCalculation extends BaseTest{
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddOrRemoveByArray(itemNames, true, 0);
+        psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
-        cp.clickRemoveByArray(partiallyRemoveArrays[0], itemNames.length);
+        cp.clickRemoveByArray(partiallyRemoveArrays[0], itemsNames[0].length);
         cp.actionClickCart();
-        cp.assertEquals(cp.isInCartByArray(updatedArrays[0]),true);
+        cp.assertEquals(cp.isInCartByArray(itemsNames[1]),true);
     }
 }

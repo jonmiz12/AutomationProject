@@ -19,12 +19,12 @@ public class BaseTest {
     String zipCode = "12345";
     String[][] partiallyRemoveArrays = {Utils.readProperty("firstPartiallyRemove").split(","),
                                         Utils.readProperty("secondPartiallyRemove").split(",")};
-    String[] itemNames = Utils.readProperty("itemNames").split(",");
-    String [][] updatedArrays = {removeArrayFromArray(itemNames, partiallyRemoveArrays[0]),
-                                 removeArrayFromArray(itemNames, partiallyRemoveArrays[1])};
+    String [][] itemsNames = {Utils.readProperty("itemNames").split(","),
+                              removeArrayFromArray(Utils.readProperty("itemNames").split(","), partiallyRemoveArrays[0]),
+                              removeArrayFromArray(Utils.readProperty("itemNames").split(","), partiallyRemoveArrays[1])};
     Double[][] prices = {convertArrayToDouble(Utils.readProperty("prices").split(",")),
-                         removePartiallyRemoveArrayFromPrices(itemNames, updatedArrays[0], convertArrayToDouble(Utils.readProperty("prices").split(","))),
-                         removePartiallyRemoveArrayFromPrices(itemNames, updatedArrays[1], convertArrayToDouble(Utils.readProperty("prices").split(",")))};
+                         removePartiallyRemoveArrayFromPrices(Utils.readProperty("itemNames").split(","), itemsNames[1], convertArrayToDouble(Utils.readProperty("prices").split(","))),
+                         removePartiallyRemoveArrayFromPrices(Utils.readProperty("itemNames").split(","), itemsNames[2], convertArrayToDouble(Utils.readProperty("prices").split(",")))};
     Double[] pricesSums = {sumPrices(prices[0]),
                            sumPrices(prices[1]),
                            sumPrices(prices[2])};

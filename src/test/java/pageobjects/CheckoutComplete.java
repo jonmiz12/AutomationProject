@@ -14,7 +14,6 @@ public class CheckoutComplete extends HeaderAndFooter{
     }
 
     public boolean isHeaderdisplayed(String purchaseCompleteHeader) {
-        System.out.println(this.purchaseCompleteHeader.getText());
         if (!this.purchaseCompleteHeader.getText().equals(purchaseCompleteHeader)) {
             return false;
         }

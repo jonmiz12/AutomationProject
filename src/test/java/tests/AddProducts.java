@@ -15,10 +15,10 @@ public class AddProducts extends BaseTest {
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
         psp.assertEquals(psp.returnCartCount(), 0);
-        psp.assertEquals(psp.actionClickAddOrRemoveByArray(itemNames, true, 0), true);
+        psp.assertEquals(psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0), true);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
-        cp.assertEquals(cp.isInCartByArray(itemNames), true);
+        cp.assertEquals(cp.isInCartByArray(itemsNames[0]), true);
     }
 
     @Test
@@ -27,10 +27,10 @@ public class AddProducts extends BaseTest {
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
         psp.assertEquals(psp.returnCartCount(), 0);
-        psp.assertEquals(psp.addRemoveToCartByArrayBackToProducts(itemNames, true, 0),true);
+        psp.assertEquals(psp.addRemoveToCartByArrayBackToProducts(itemsNames[0], true, 0),true);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
-        cp.assertEquals(cp.isInCartByArray(itemNames), true);
+        cp.assertEquals(cp.isInCartByArray(itemsNames[0]), true);
     }
 
     @DataProvider

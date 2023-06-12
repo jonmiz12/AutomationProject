@@ -20,7 +20,7 @@ public class SocialMediaLinks extends BaseTest{
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickItemName(itemNames[0]);
+        psp.actionClickItemName(itemsNames[0][0]);
         ProductPage pp = new ProductPage(driver);
         pp.assertEquals(psp.compareSocialLinks(socialLinks), true);
     }

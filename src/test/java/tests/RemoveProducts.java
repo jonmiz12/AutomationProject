@@ -11,8 +11,8 @@ public class RemoveProducts extends BaseTest{
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddOrRemoveByArray(itemNames, true, 0);
-        psp.assertEquals(psp.actionClickAddOrRemoveByArray(itemNames, false, itemNames.length), true);
+        psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0);
+        psp.assertEquals(psp.actionClickAddOrRemoveByArray(itemsNames[0], false, itemsNames[0].length), true);
     }
 
     @Test
@@ -20,7 +20,7 @@ public class RemoveProducts extends BaseTest{
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddOrRemoveByArray(itemNames, true, 0);
-        psp.assertEquals(psp.addRemoveToCartByArrayBackToProducts(itemNames, false, itemNames.length),true);
+        psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0);
+        psp.assertEquals(psp.addRemoveToCartByArrayBackToProducts(itemsNames[0], false, itemsNames[0].length),true);
     }
 }

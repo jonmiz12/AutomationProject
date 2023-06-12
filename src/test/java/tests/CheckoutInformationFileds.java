@@ -13,7 +13,7 @@ public class CheckoutInformationFileds extends BaseTest {
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemNames[0]);
+        psp.actionClickAddToCartByName(itemsNames[0][0]);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
         cp.actionClickCheckout();
@@ -27,7 +27,7 @@ public class CheckoutInformationFileds extends BaseTest {
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemNames[0]);
+        psp.actionClickAddToCartByName(itemsNames[0][0]);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
         cp.actionClickCheckout();
@@ -41,7 +41,7 @@ public class CheckoutInformationFileds extends BaseTest {
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemNames[0]);
+        psp.actionClickAddToCartByName(itemsNames[0][0]);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
         cp.actionClickCheckout();
@@ -55,7 +55,7 @@ public class CheckoutInformationFileds extends BaseTest {
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemNames[0]);
+        psp.actionClickAddToCartByName(itemsNames[0][0]);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
         cp.actionClickCheckout();
@@ -69,7 +69,7 @@ public class CheckoutInformationFileds extends BaseTest {
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemNames[0]);
+        psp.actionClickAddToCartByName(itemsNames[0][0]);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
         cp.actionClickCheckout();
@@ -83,7 +83,7 @@ public class CheckoutInformationFileds extends BaseTest {
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemNames[0]);
+        psp.actionClickAddToCartByName(itemsNames[0][0]);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
         cp.actionClickCheckout();
@@ -97,7 +97,7 @@ public class CheckoutInformationFileds extends BaseTest {
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemNames[0]);
+        psp.actionClickAddToCartByName(itemsNames[0][0]);
         psp.actionClickCart();
         CartPage cp = new CartPage(driver);
         cp.actionClickCheckout();
