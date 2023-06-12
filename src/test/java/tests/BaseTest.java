@@ -17,17 +17,17 @@ public class BaseTest {
     String firstName = "Jon";
     String lastName = "miz";
     String zipCode = "12345";
-    String[] firstPartiallyRemove = Utils.readProperty("firstPartiallyRemove").split(",");
-    String[] secondPartiallyRemove = Utils.readProperty("secondPartiallyRemove").split(",");
+    String[][] partiallyRemoveArrays = {Utils.readProperty("firstPartiallyRemove").split(","),
+                                        Utils.readProperty("secondPartiallyRemove").split(",")};
     String[] itemNames = Utils.readProperty("itemNames").split(",");
-    String[] firstUpdatedArray = removeArrayFromArray(itemNames, firstPartiallyRemove);
-    String[] secondUpdatedArray = removeArrayFromArray(itemNames, secondPartiallyRemove);
-    Double[] prices = convertArrayToDouble(Utils.readProperty("prices").split(","));
-    Double[] firstUpdatedPrices = removePartiallyRemoveArrayFromPrices(itemNames, firstUpdatedArray, prices);
-    Double[] secondUpdatedPrices = removePartiallyRemoveArrayFromPrices(itemNames, secondUpdatedArray, prices);
-    Double sumPrices = sumPrices(prices);
-    Double firstUpdatedSumPrices = sumPrices(firstUpdatedPrices);
-    Double secondUpdatedSumPrices = sumPrices(secondUpdatedPrices);
+    String [][] updatedArrays = {removeArrayFromArray(itemNames, partiallyRemoveArrays[0]),
+                                 removeArrayFromArray(itemNames, partiallyRemoveArrays[1])};
+    Double[][] prices = {convertArrayToDouble(Utils.readProperty("prices").split(",")),
+                         removePartiallyRemoveArrayFromPrices(itemNames, updatedArrays[0], convertArrayToDouble(Utils.readProperty("prices").split(","))),
+                         removePartiallyRemoveArrayFromPrices(itemNames, updatedArrays[1], convertArrayToDouble(Utils.readProperty("prices").split(",")))};
+    Double[] pricesSums = {sumPrices(prices[0]),
+                           sumPrices(prices[1]),
+                           sumPrices(prices[2])};
     Double taxDivision = 12.5;
     String firstNameError = "Error: First Name is required";
     String lastNameError = "Error: Last Name is required";
