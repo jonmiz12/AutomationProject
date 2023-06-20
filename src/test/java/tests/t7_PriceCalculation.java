@@ -3,7 +3,7 @@ package tests;
 import org.testng.annotations.Test;
 import pageobjects.*;
 
-public class PriceCalculation extends BaseTest{
+public class t7_PriceCalculation extends BaseTest{
 
     @Test
     public void tc01_addAndGoStraightToCheckout() {

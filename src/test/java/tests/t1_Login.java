@@ -7,10 +7,10 @@ import pageobjects.LoginPage;
 import pageobjects.ProductsPage;
 import utils.Excel;
 
-public class LoginTests extends BaseTest{
+public class t1_Login extends BaseTest{
 
     @Test(dataProvider = "getDataFromExcel")
-    public void tc01_standardUser(String username, String password, String expectedError){
+    public void tc01_userLogin(String username, String password, String expectedError){
         LoginPage lp = new LoginPage(driver);
         lp.login(username, password);
         if (expectedError!="") {

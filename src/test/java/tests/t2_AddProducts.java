@@ -7,7 +7,7 @@ import pageobjects.LoginPage;
 import pageobjects.ProductsPage;
 import utils.Excel;
 
-public class AddProducts extends BaseTest {
+public class t2_AddProducts extends BaseTest {
 
     @Test
     public void tc01_AddItemsFromProductsPage() {

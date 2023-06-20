@@ -5,7 +5,7 @@ import pageobjects.LoginPage;
 import pageobjects.ProductPage;
 import pageobjects.ProductsPage;
 
-public class SocialMediaLinks extends BaseTest{
+public class t8_SocialMediaLinks extends BaseTest{
 
     @Test
     public void tc01_verifySocialMediaLinksInProductsPage() {
