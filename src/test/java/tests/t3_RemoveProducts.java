@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import pageobjects.LoginPage;
 import pageobjects.ProductsPage;
 
-public class RemoveProducts extends BaseTest{
+public class t3_RemoveProducts extends BaseTest{
 
     @Test
     public void tc01_removeItemsFromProductsPage() {

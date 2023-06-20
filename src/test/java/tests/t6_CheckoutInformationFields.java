@@ -6,7 +6,7 @@ import pageobjects.CheckoutInformation;
 import pageobjects.LoginPage;
 import pageobjects.ProductsPage;
 
-public class CheckoutInformationFileds extends BaseTest {
+public class t6_CheckoutInformationFields extends BaseTest {
 
     @Test
     public void tc01_fillAllFields() {

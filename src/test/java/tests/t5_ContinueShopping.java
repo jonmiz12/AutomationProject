@@ -3,7 +3,7 @@ package tests;
 import org.testng.annotations.Test;
 import pageobjects.*;
 
-public class ContinueShopping extends  BaseTest{
+public class t5_ContinueShopping extends  BaseTest{
 
     @Test
     public void tc01_addProductsGoToCheckoutAndContinueShopping() {
