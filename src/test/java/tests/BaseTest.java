@@ -2,12 +2,13 @@ package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utils.Utils;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class BaseTest {
@@ -40,14 +41,20 @@ public class BaseTest {
 
 
     @BeforeMethod
-    public void setup(){
+    public void setup() throws URISyntaxException, IOException {
         try {
             Runtime.getRuntime().exec("taskkill.exe /F /IM chromedriver.exe /T" + "cmd.exe");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        WebDriverManager webDriverManager = WebDriverManager
+                .chromedriver()
+                .browserInDocker()
+                .enableVnc()
+                .enableRecording();
+        driver =  webDriverManager
+                .create();
+        Desktop.getDesktop().browse(webDriverManager.getDockerNoVncUrl().toURI());
         driver.manage().window().maximize();
         driver.get(Utils.readProperty("url"));
     }
