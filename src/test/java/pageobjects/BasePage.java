@@ -27,7 +27,7 @@ public class BasePage {
 		js=(JavascriptExecutor)driver;
 		PageFactory.initElements(driver, this);
 		actions = new Actions(driver);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(6));
 	}
 	
 	public void fillText (WebElement el, String text) {
