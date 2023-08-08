@@ -8,8 +8,6 @@ The project automates tests on the demo site 'SauceDemo.com'<br>
 <li>Maven - Dependency managment and project build and execution</li>
 <li>TestNG - annotations (before, after, setup, teardown...), testng.xml test managment</li>
 <li>Git source control - Integration with itelliJ, GitHub desktop, Jenkins integration</li>
-
-<br><br>
 <h2>Test scripts</h2>
 <li>Login</li>
 <li>Add products</li>
