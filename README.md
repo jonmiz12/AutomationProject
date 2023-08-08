@@ -11,7 +11,8 @@ The project the following tools and technologies -
 <li>TestNG - annotations (before, after, setup, teardown...), testng.xml test managment</li>
 <li>Git source control - Integration with itelliJ, GitHub desktop, Jenkins integration</li>
 
-The projct contains the following test scripts, each containing multiple tests -
+
+The project contains the following test scripts, each containing multiple tests -
 <li>Login</li>
 <li>Add products</li>
 <li>Remove products</li>
