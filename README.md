@@ -1,6 +1,6 @@
 # AutomationProject
 The project automates tests on the demo site 'SauceDemo.com'<br>
-**The project's infrastructure is built with the following tools and technologies -
+<h2>The project's infrastructure is built with the following tools and technologies</h2>
 <li>Maven, Jenkins, Allure, Git, TestNG</li>
 <li>Page object model, Page object factory, Base page, Base test</li>
 <li>Jenkins - Build triggers, Git Integration, Slave</li>
@@ -20,7 +20,7 @@ The project contains the following test scripts, each containing multiple tests 
 <li>Price calculation</li>
 <li>Social media links</li>
 
-<h1>Allure test reports</h1>
+<h2>Allure test reports</h2>
 <img src="https://github.com/jonmiz12/AutomationProject/assets/58295061/7abd2cb3-6d03-479a-b36f-81d57030bf1e" width="700">
 <img src="https://github.com/jonmiz12/AutomationProject/assets/58295061/455dde73-7766-401d-9984-a3eb408032e2" width="700">
 <img src="https://github.com/jonmiz12/AutomationProject/assets/58295061/dbd733e2-7330-4843-afab-c18c9b766f02" width="700">
