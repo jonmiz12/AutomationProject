@@ -1,11 +1,11 @@
 # AutomationProject
 The project automates tests on the demo site 'SauceDemo.com'
 The project the following tools and technologies -
-<ul style>
+
 	<u><b>Project infrastructure -</b></u>
 		##Maven, Jenkins, Allure, Git, TestNG
 		##Page object model, Page object factory, Base page, Base test
-</ul>
+
 <li>Build project in Jenkins using Git</li>
 Jenkins - Build triggers, Git Integration, Slave
 DDT - Read from excel to a DataProvider
