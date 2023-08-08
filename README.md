@@ -5,7 +5,7 @@ The project the following tools and technologies -
 	<u><b>Project infrastructure -</b></u>
 		<li>Maven, Jenkins, Allure, Git, TestNG</li>
 		<li>Page object model, Page object factory, Base page, Base test</li>
-<ul>
+</ul>
 <li>Build project in Jenkins using Git</li>
 Jenkins - Build triggers, Git Integration, Slave
 DDT - Read from excel to a DataProvider
