@@ -1,7 +1,9 @@
 # AutomationProject
 <h2>Allure test reports</h2>
 
-<img src="https://github.com/jonmiz12/AutomationProject/assets/58295061/25b7e43b-6e6d-45ab-ac18-7c034cb70a77" width="700">
+
+[<img src="" width="700">](https://github.com/jonmiz12/AutomationProject/assets/58295061/f1893277-399e-4929-a8bb-19475f409caf)
+
 
 
 <img src="https://github.com/jonmiz12/AutomationProject/assets/58295061/7abd2cb3-6d03-479a-b36f-81d57030bf1e" width="700">
