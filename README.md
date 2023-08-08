@@ -8,13 +8,13 @@ The project the following tools and technologies -
 
 
 <li>Build project in Jenkins using Git</li>
-Jenkins - Build triggers, Git Integration, Slave
-DDT - Read from excel to a DataProvider
-Maven - Dependency managment and project build and execution
-TestNG - annotations (before, after, setup, teardown...), testng.xml test managment
-Git source control - Integration with itelliJ, GitHub desktop, Jenkins integration
-HTML and CSS - Bootstrap, SemanticsUI
-Mobile – Appium, capabilities, AVD, ADB through USB\wifi.
+<li>Jenkins - Build triggers, Git Integration, Slave</li>
+<li>DDT - Read from excel to a DataProvider</li>
+<li>Maven - Dependency managment and project build and execution</li>
+<li>TestNG - annotations (before, after, setup, teardown...), testng.xml test managment</li>
+<li>Git source control - Integration with itelliJ, GitHub desktop, Jenkins integration</li>
+<li>HTML and CSS - Bootstrap, SemanticsUI</li>
+
 The projct contains the following test scripts, each containing multiple tests -
 <li>Login</li>
 <li>Add products</li>
