@@ -1,6 +1,6 @@
 # AutomationProject
 The project automates tests on the demo site 'SauceDemo.com'<br>
-<h2>The project's infrastructure is built with the following tools and technologies</h2>
+<h2>Project's infrastructure, tools and technologies</h2>
 <li>Maven, Jenkins, Allure, Git, TestNG</li>
 <li>Page object model, Page object factory, Base page, Base test</li>
 <li>Jenkins - Build triggers, Git Integration, Slave</li>
@@ -10,7 +10,7 @@ The project automates tests on the demo site 'SauceDemo.com'<br>
 <li>Git source control - Integration with itelliJ, GitHub desktop, Jenkins integration</li>
 
 <br><br>
-The project contains the following test scripts, each containing multiple tests -
+<h2>Test scripts</h2>
 <li>Login</li>
 <li>Add products</li>
 <li>Remove products</li>
