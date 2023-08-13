@@ -2,13 +2,13 @@ package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pageobjects.*;
 import utils.Utils;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class BaseTest {
@@ -35,28 +35,59 @@ public class BaseTest {
     String zipCodeError = "Error: Postal Code is required";
     String checkoutOverviewHeader = "Checkout: Overview";
     String[] socialLinks = {"linkedin.com/company/sauce-labs",
-                            "www.facebook.com/saucelabs",
-                            "www.twitter.com/saucelabs"};
+                            "facebook.com/saucelabs",
+                            "twitter.com/saucelabs",};
     WebDriver driver;
 
+    public LoginPage LoginPage;
+    public CheckoutOverview CheckoutOverview;
+    public CheckoutInformation CheckoutInformation;
+    public CheckoutComplete CheckoutComplete;
+    public HeaderAndFooter HeaderAndFooter;
+    public CartPage CartPage;
+    public ProductPage ProductPage;
+    public ProductsPage ProductsPage;
 
+    public void initializeObjects(){
+        CartPage = new CartPage(driver);
+        CheckoutComplete = new CheckoutComplete(driver);
+        CheckoutInformation = new CheckoutInformation(driver);
+        CheckoutOverview = new CheckoutOverview(driver);
+        HeaderAndFooter = new HeaderAndFooter(driver);
+        LoginPage = new LoginPage(driver);
+        ProductPage = new ProductPage(driver);
+        ProductsPage = new ProductsPage(driver);
+    }
     @BeforeMethod
-    public void setup() throws URISyntaxException, IOException {
+    public void setup() throws IOException, InterruptedException {
         try {
             Runtime.getRuntime().exec("taskkill.exe /F /IM chromedriver.exe /T" + "cmd.exe");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        WebDriverManager webDriverManager = WebDriverManager
-                .chromedriver()
-                .browserInDocker()
-                .enableVnc()
-                .enableRecording();
-        driver =  webDriverManager
-                .create();
-        Desktop.getDesktop().browse(webDriverManager.getDockerNoVncUrl().toURI());
+
+//        utils.Utils.runCommandFromFile("startAVD");
+
+//        appium --allow-insecure chromedriver_autodownload
+//        RUn this in cli before executing project
+
+//        Runtime.getRuntime().exec("cd C:\\Users\\username\\AppData\\Local\\Android\\sdk\\emulator");
+//        Runtime.getRuntime().exec("emulator -avd emulator_name");
+//
+//        UiAutomator2Options uiAutomator2Options = new UiAutomator2Options();
+//        uiAutomator2Options.setPlatformName(ANDROID)
+//                .setAutomationName(ANDROID_UIAUTOMATOR2)
+//                .amend(CapabilityType.BROWSER_NAME, "Chrome")
+//                .setDeviceName("Pixel_XL_API_33")
+//                .setUdid("emulator-5554")
+//                .setChromedriverExecutableDir("./utils/ExecutableDirs")
+//                .setChromedriverChromeMappingFile("https://github.com/appium/appium-chromedriver/blob/master/config/mapping.json");
+//        driver = new AndroidDriver(uiAutomator2Options);
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(Utils.readProperty("url"));
+        initializeObjects();
     }
 
     @AfterMethod

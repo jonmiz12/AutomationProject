@@ -1,5 +1,6 @@
 package pageobjects;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +23,7 @@ public class CartPage extends HeaderAndFooter{
         super(driver);
     }
 
+    @Description("Verifies if the given item name is in the cart")
     public boolean isInCartBYName(String itemName) {
         for (WebElement cartItemName : cartItemsNames) {
             if (cartItemName.getText().equals(itemName)) {
@@ -31,38 +33,46 @@ public class CartPage extends HeaderAndFooter{
         return false;
     }
 
-    public boolean isInCartByArray(String [] itemsNames){
+    @Description("Verifies if the given items array is in the cart")
+    public CartPage isInCartByArray(String [] itemsNames){
         for (String itemName : itemsNames) {
-            if (!isInCartBYName(itemName)) {
-                return false;
-            }
+            assert isInCartBYName(itemName) : "Item '"+itemName+"' was not found in the cart";
         }
-        return true;
+        return this;
     }
 
-    public void actionClickCheckout() {
+    @Description("Refreshes the page")
+    public CartPage refresh() {
+        driver.navigate().refresh();
+        return this;
+    }
+
+    @Description("Clicks the checkout button")
+    public CartPage actionClickCheckout() {
         click(checkoutBtn);
+        return this;
     }
 
-    public boolean clickRemoveByArray(String[] itemNames, int originalSize) {
+    @Description("Removes items by the given items array")
+    public CartPage clickRemoveByArray(String[] itemNames, int originalSize) {
+        int actualCartCount;
+        int expectedCartCount;
+        assert itemNames.length<=cartItemsNames.size(): "Items to remove ("+itemNames.length+") are greater than items in cart ("+(cartItemsNames.size()+")");
         for (int i=0; i<itemNames.length; i++) {
             for (int j=0; j<itemsRemoveBtns.size()+1; j++) {
-                if (i != cartItemsNames.size()) {
-                    if (itemNames[i].equals(cartItemsNames.get(j).getText())) {
-                        click(itemsRemoveBtns.get(j));
-                        if (returnCartCount() != originalSize-(i+1)) {
-                            return false;
-                        }
-                        break;
-                    }
-                } else {
-                    return false;
+                if (itemNames[i].equals(cartItemsNames.get(j).getText())) {
+                    click(itemsRemoveBtns.get(j));
+                    actualCartCount = returnCartCount();
+                    expectedCartCount = originalSize-(i+1);
+                    assert actualCartCount==expectedCartCount : "Actual cartCount =" + actualCartCount + " Expected cartCount =" + expectedCartCount;
+                    break;
                 }
             }
         }
-        return true;
+        return this;
     }
 
+    @Description("Clicks the 'Continue shopping' button")
     public void actionClickContinueShopping() {
         click(continueShoppingBtn);
     }

@@ -1,5 +1,6 @@
 package pageobjects;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +13,8 @@ public class HeaderAndFooter extends BasePage{
     WebElement hamburgermenuBtn;
     @FindBy(css = "#logout_sidebar_link")
     WebElement logoutBtn;
+    @FindBy(css = ".shopping_cart_link")
+    WebElement shoppingCartBtn;
     @FindBy(css = ".shopping_cart_badge")
     WebElement cartCount;
     @FindBy(css = ".title")
@@ -27,24 +30,37 @@ public class HeaderAndFooter extends BasePage{
         super(driver);
     }
 
+    @Description("Clicks the hamburger menu button")
     public void actionClickHamburger(){
         waitFor(hamburgermenuBtn);
         click(hamburgermenuBtn);
     }
 
+    @Description("Clicks the logout button")
     public void actionClickLogout(){
         click(logoutBtn);
     }
 
-    public void logout(){
+    @Description("Clicks the hamburger menu and then loguot button")
+    public HeaderAndFooter logout(){
         actionClickHamburger();
         actionClickLogout();
+        return this;
     }
 
-    public void actionClickCart() {
-        click(cartCount);
+    @Description("Click the cart button")
+    public HeaderAndFooter actionClickCart() {
+        click(shoppingCartBtn);
+        return this;
     }
 
+    @Description("Verifies if the cart count matches the given number")
+    public HeaderAndFooter isCartCountMatch (int expectedCartCount) {
+        assert returnCartCount()==expectedCartCount;
+        return this;
+    }
+
+    @Description("Returns the cart count")
     public int returnCartCount() {
         int count;
         try {
@@ -55,41 +71,30 @@ public class HeaderAndFooter extends BasePage{
         return count;
     }
 
+    @Description("Returns the page title")
     public String getPageTitle() {
         return pageTitle.getText();
     }
 
-    public boolean compareSocialLinks(String[] socialLinks) {
-        String currentUrl;
-        for (WebElement actualSocialLink : this.socialLinks) {
-            for (int i=0; i<socialLinks.length+1; i++) {
-                currentUrl = actualSocialLink.getAttribute("href");
-                if (currentUrl.contains(socialLinks[i]) || i<socialLinks.length) {
+    @Description("Verifies if the actual page title matches the given text")
+    public HeaderAndFooter isPageTitleMatch(String expectedPageTitle){
+        String actualPageTitle = getPageTitle();
+        assert expectedPageTitle.equals(actualPageTitle) : "Actual page title '"+actualPageTitle+"' does not match expected page title '"+expectedPageTitle+"'";
+        return this;
+    }
+
+    @Description("Verifies that the actual social link matches the given social link")
+    public HeaderAndFooter compareSocialLinks(String[] socialLinks) {
+        assert this.socialLinks.size()==socialLinks.length : "The actual links size ("+this.socialLinks.size()+") does not match the expected social links size ("+socialLinks.length+")";
+        for (String expectedSocialLink : socialLinks) {
+            for (int i=0; i<this.socialLinks.size()+1; i++) {
+                assert i!=this.socialLinks.size() : "The URL '"+expectedSocialLink+"' was not found";
+                if (this.socialLinks.get(i).getAttribute("href").contains(expectedSocialLink)) {
                     break;
                 }
-                return false;
+
             }
         }
-        return true;
-
-
-//        if (socialLinks.length!=social.length){
-//            return false;
-//        }
-//        String currentUrl;
-//        for (WebElement socialLink : this.socialLinks) {
-//            click(socialLink);
-//            Set<String> allWindowHandles = driver.getWindowHandles();
-//
-//            currentUrl = driver.getCurrentUrl();
-//            String domain = returnTextAfterRegex(currentUrl, "\\.(.*?)\\.");
-//            for (int i=0; i<socialLinks.length+1; i++) {
-//                if (currentUrl.contains("twitter") && socialLinks[i].contains("twitter") && i<socialLinks.length) {
-//                    break;
-//                }
-//                return false;
-//            }
-//        }
-//        return true;
+        return this;
     }
 }

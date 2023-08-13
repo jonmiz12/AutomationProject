@@ -1,85 +1,65 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
-import pageobjects.*;
 
 public class t4_BuyProducts extends BaseTest{
 
+    @Description("The test adds products from the main products page and proceeds with the positive auction flow")
     @Test
     public void tc01_addProductsFromProductsPageAndBuy() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.assertEquals(psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0), true);
-        psp.actionClickCart();
-        CartPage cp = new CartPage(driver);
-        cp.assertEquals(cp.isInCartByArray(itemsNames[0]), true);
-        cp.actionClickCheckout();
-        CheckoutInformation ci = new CheckoutInformation(driver);
-        ci.assertEquals(ci.fillFormAndSubmit(firstName, lastName, zipCode), true);
-        CheckoutOverview co = new CheckoutOverview(driver);
-        co.assertEquals(co.isInCartByArray(itemsNames[0]), true);
-        co.actionClickFinish();
-        CheckoutComplete cc = new CheckoutComplete(driver);
-        cc.assertEquals(cc.isHeaderdisplayed(purchaseCompleteHeader), true);
+        LoginPage.login(username, password);
+        ProductsPage.actionClickAddOrRemoveByArray(itemsNames[0], true, 0).
+        actionClickCart();
+        CartPage.isInCartByArray(itemsNames[0]).
+        actionClickCheckout();
+        CheckoutInformation.fillFormAndSubmit(firstName, lastName, zipCode);
+        CheckoutOverview.isInCartByArray(itemsNames[0]).
+        actionClickFinish();
+        CheckoutComplete.isHeaderdisplayed(purchaseCompleteHeader);
     }
 
+    @Description("The test adds products from each specific product page and proceeds with the positive auction flow")
     @Test
     public void tc02_addProductsFromProductPageAndBuy() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.assertEquals(psp.addRemoveToCartByArrayBackToProducts(itemsNames[0], true, 0), true);
-        psp.actionClickCart();
-        CartPage cp = new CartPage(driver);
-        cp.assertEquals(cp.isInCartByArray(itemsNames[0]), true);
-        cp.actionClickCheckout();
-        CheckoutInformation ci = new CheckoutInformation(driver);
-        ci.assertEquals(ci.fillFormAndSubmit(firstName, lastName, zipCode), true);
-        CheckoutOverview co = new CheckoutOverview(driver);
-        co.assertEquals(co.isInCartByArray(itemsNames[0]), true);
-        co.actionClickFinish();
-        CheckoutComplete cc = new CheckoutComplete(driver);
-        cc.assertEquals(cc.isHeaderdisplayed(purchaseCompleteHeader), true);
+        LoginPage.login(username, password);
+        ProductsPage.addRemoveToCartByArrayBackToProducts(itemsNames[0], true, 0).
+        actionClickCart();
+        CartPage.isInCartByArray(itemsNames[0]).
+        actionClickCheckout();
+        CheckoutInformation.fillFormAndSubmit(firstName, lastName, zipCode);
+        CheckoutOverview.isInCartByArray(itemsNames[0]).
+        actionClickFinish();
+        CheckoutComplete.isHeaderdisplayed(purchaseCompleteHeader);
     }
 
+    @Description("The test adds products from the main products page, removes some and proceeds with the positive auction flow")
     @Test
     public void tc03_AddProductsFromProductsPageRemoveSomeAndBuy() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.assertEquals(psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0), true);
-        psp.assertEquals(psp.actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], false, itemsNames[0].length), true);
-        psp.actionClickCart();
-        CartPage cp = new CartPage(driver);
-        cp.assertEquals(cp.isInCartByArray(itemsNames[1]), true);
-        cp.actionClickCheckout();
-        CheckoutInformation ci = new CheckoutInformation(driver);
-        ci.assertEquals(ci.fillFormAndSubmit(firstName, lastName, zipCode), true);
-        CheckoutOverview co = new CheckoutOverview(driver);
-        co.assertEquals(co.isInCartByArray(itemsNames[1]), true);
-        co.actionClickFinish();
-        CheckoutComplete cc = new CheckoutComplete(driver);
-        cc.assertEquals(cc.isHeaderdisplayed(purchaseCompleteHeader), true);
+        LoginPage.login(username, password);
+        ProductsPage.actionClickAddOrRemoveByArray(itemsNames[0], true, 0).
+        actionClickAddOrRemoveByArray(partiallyRemoveArrays[0], false, itemsNames[0].length).
+        actionClickCart();
+        CartPage.isInCartByArray(itemsNames[1]).
+        actionClickCheckout();
+        CheckoutInformation.fillFormAndSubmit(firstName, lastName, zipCode);
+        CheckoutOverview.isInCartByArray(itemsNames[1]).
+        actionClickFinish();
+        CheckoutComplete.isHeaderdisplayed(purchaseCompleteHeader);
     }
 
+    @Description("The test adds products from each specific product page, removes some and proceeds with the positive auction flow")
     @Test
     public void tc04_addProductsFromProductPageRemoveSomeAndBuy() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.assertEquals(psp.addRemoveToCartByArrayBackToProducts(itemsNames[0], true, 0), true);
-        psp.assertEquals(psp.addRemoveToCartByArrayBackToProducts(partiallyRemoveArrays[0], false, itemsNames[0].length), true);
-        psp.actionClickCart();
-        CartPage cp = new CartPage(driver);
-        cp.assertEquals(cp.isInCartByArray(itemsNames[1]), true);
-        cp.actionClickCheckout();
-        CheckoutInformation ci = new CheckoutInformation(driver);
-        ci.assertEquals(ci.fillFormAndSubmit(firstName, lastName, zipCode), true);
-        CheckoutOverview co = new CheckoutOverview(driver);
-        co.assertEquals(co.isInCartByArray(itemsNames[1]), true);
-        co.actionClickFinish();
-        CheckoutComplete cc = new CheckoutComplete(driver);
-        cc.assertEquals(cc.isHeaderdisplayed(purchaseCompleteHeader), true);
+        LoginPage.login(username, password);
+        ProductsPage.addRemoveToCartByArrayBackToProducts(itemsNames[0], true, 0).
+        addRemoveToCartByArrayBackToProducts(partiallyRemoveArrays[0], false, itemsNames[0].length).
+        actionClickCart();
+        CartPage.isInCartByArray(itemsNames[1]).
+        actionClickCheckout();
+        CheckoutInformation.fillFormAndSubmit(firstName, lastName, zipCode);
+        CheckoutOverview.isInCartByArray(itemsNames[1]).
+        actionClickFinish();
+        CheckoutComplete.isHeaderdisplayed(purchaseCompleteHeader);
     }
 }

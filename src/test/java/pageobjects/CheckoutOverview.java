@@ -1,5 +1,6 @@
 package pageobjects;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,6 +26,7 @@ public class CheckoutOverview extends HeaderAndFooter {
         super(driver);
     }
 
+    @Description("Verifies if the given item name is displays in the cart list")
     public boolean isInCartBYName(String itemName) {
         for (WebElement cartItemName : cartItemsNames) {
             if (cartItemName.getText().equals(itemName)) {
@@ -34,25 +36,27 @@ public class CheckoutOverview extends HeaderAndFooter {
         return false;
     }
 
-    public boolean isInCartByArray(String [] itemsNames){
+    @Description("Verifies if the array of items is displayed in the cart list")
+    public CheckoutOverview isInCartByArray(String [] itemsNames){
         for (String itemName : itemsNames) {
-            if (!isInCartBYName(itemName)) {
-                return false;
-            }
+            assert isInCartBYName(itemName) : "The item '"+itemName+"' wasn't found in the checkoutOverview page";
         }
-        return true;
+        return this;
     }
 
-    public void actionClickFinish() {
+    @Description("Clicks the finish button")
+    public CheckoutOverview actionClickFinish() {
         click(finishBtn);
+        return this;
     }
 
+    @Description("Verifies that the given price match the given item name on the items list")
     public boolean isPriceMatchByName(String itemName, double price) {
         boolean match = false;
         for (int i=0; i<cartItemsNames.size(); i++) {
             if ((cartItemsNames.get(i).getText().equals(itemName))) {
                 match=false;
-                if (removeFirstAndConvertToDouble(itemPrices.get(i).getText())==price) {
+                if (removeFirst$AndConvertToDouble(itemPrices.get(i).getText())==price) {
                     match=true;
                 }
             }
@@ -60,19 +64,17 @@ public class CheckoutOverview extends HeaderAndFooter {
         return match;
     }
 
-    public boolean isPriceMatchByArray(String [] itemNames, Double [] prices) {
-        if (itemNames.length!=prices.length) {
-            return false;
-        }
+    @Description("Verifies that each item's price matches it's corresponding given name and price")
+    public CheckoutOverview isPriceMatchByArray(String [] itemNames, Double [] prices) {
+        assert itemNames.length==prices.length : "Items list size ("+itemNames.length+") does not match prices list size ("+prices.length+")";
         for (int i=0; i<cartItemsNames.size(); i++) {
-            if (!isPriceMatchByName(itemNames[i], prices[i])) {
-                return false;
-            }
+            assert isPriceMatchByName(itemNames[i], prices[i]) : "The item '"+itemNames[i]+"' does not match price '"+prices[i]+"'";
         }
-        return true;
+        return this;
     }
 
-    public Double removeFirstAndConvertToDouble(String phrase) {
+    @Description("If the first character of the text is '$', it is removed adn the text is returned, if not, it splits the text in two where there is a space and return the second part")
+    public Double removeFirst$AndConvertToDouble(String phrase) {
         if (phrase.startsWith("$")) {
             return Double.parseDouble(phrase.substring(1));
         } else {
@@ -80,32 +82,38 @@ public class CheckoutOverview extends HeaderAndFooter {
         }
     }
 
+    @Description("Sums up all item's prices and returns the sum")
     public Double sumPrices() {
         Double sum=0.0;
         for (int i=0; i<itemPrices.size(); i++) {
-           sum = sum + removeFirstAndConvertToDouble(itemPrices.get(i).getText());
+           sum = sum + removeFirst$AndConvertToDouble(itemPrices.get(i).getText());
         }
         return sum;
     }
 
-    public boolean isTotalPricesMatch(Double [] prices) {
+    @Description("Verifies that the total prices sum is equal to the sum of given prices array")
+    public CheckoutOverview isTotalPricesMatch(Double [] prices) {
         Double sum = 0.0;
         for (Double price : prices) {
             sum = sum + price;
         }
         Double expectedSum = sumPrices();
-        return sum.equals(expectedSum);
+        assert sum.equals(expectedSum) : "Actual sum ("+sum+") does not match expected sum ("+expectedSum+")";
+        return this;
     }
 
-    public boolean isTaxCalc(Double taxPercentage, Double sumPrices) {
-        Double currentTax = removeFirstAndConvertToDouble(this.taxPrice.getText());
+    @Description("Verifies that the tax calculation equals to the expected tax calculation using the given tax % and the prices sum")
+    public CheckoutOverview isTaxCalc(Double taxPercentage, Double sumPrices) {
+        Double currentTax = removeFirst$AndConvertToDouble(this.taxPrice.getText());
         Double expectedTax = sumPrices/taxPercentage;
         bigDecimal = new BigDecimal(expectedTax);
         bigDecimal = bigDecimal.setScale(2, RoundingMode.HALF_UP);
         expectedTax = bigDecimal.doubleValue();
-        return Math.abs(currentTax - expectedTax) < 0.001;
+        assert Math.abs(currentTax - expectedTax) < 0.001 : "The gap between actual tax ("+currentTax+") and expected tax ("+expectedTax+") is bigger than 0.001";
+        return this;
     }
 
+    @Description("Clicks cancel button")
     public void actionClickCancel() {
         click(cancelBtn);
     }

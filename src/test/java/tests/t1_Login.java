@@ -1,24 +1,21 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pageobjects.LoginPage;
-import pageobjects.ProductsPage;
 import utils.Excel;
 
 public class t1_Login extends BaseTest{
-
+    @Description("The test attempts login with each given username and password and verifies the expected error.")
     @Test(dataProvider = "getDataFromExcel")
     public void tc01_userLogin(String username, String password, String expectedError){
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
+        LoginPage.login(username, password);
         if (expectedError!="") {
-            Assert.assertEquals(lp.returnErrorMessage(), expectedError);
+            Assert.assertEquals(LoginPage.returnErrorMessage(), expectedError);
         } else {
             if (expectedError==""){
-                ProductsPage psp = new ProductsPage(driver);
-                psp.logout();
+                ProductsPage.logout();
             }
         }
     }

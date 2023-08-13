@@ -1,26 +1,23 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
-import pageobjects.LoginPage;
-import pageobjects.ProductsPage;
 
 public class t3_RemoveProducts extends BaseTest{
 
+    @Description("The test adds products from the main products page, removes them and verifies the cart items number has updated")
     @Test
     public void tc01_removeItemsFromProductsPage() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0);
-        psp.assertEquals(psp.actionClickAddOrRemoveByArray(itemsNames[0], false, itemsNames[0].length), true);
+        LoginPage.login(username, password);
+        ProductsPage.actionClickAddOrRemoveByArray(itemsNames[0], true, 0).
+        actionClickAddOrRemoveByArray(itemsNames[0], false, itemsNames[0].length);
     }
 
+    @Description("The test adds products from each specific product page, removes them and verifies the cart items number has updated")
     @Test
     public void tc01_removeItemsFromProductPage(){
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddOrRemoveByArray(itemsNames[0], true, 0);
-        psp.assertEquals(psp.addRemoveToCartByArrayBackToProducts(itemsNames[0], false, itemsNames[0].length),true);
+        LoginPage.login(username, password);
+        ProductsPage.actionClickAddOrRemoveByArray(itemsNames[0], true, 0).
+        addRemoveToCartByArrayBackToProducts(itemsNames[0], false, itemsNames[0].length);
     }
 }

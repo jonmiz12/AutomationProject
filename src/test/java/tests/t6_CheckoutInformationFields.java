@@ -1,108 +1,84 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
-import pageobjects.CartPage;
-import pageobjects.CheckoutInformation;
-import pageobjects.LoginPage;
-import pageobjects.ProductsPage;
 
 public class t6_CheckoutInformationFields extends BaseTest {
 
+    @Description("The test adds products, proceeds to information page and attempts to proceeds with the given firstName lastNaem and zipCode")
     @Test
     public void tc01_fillAllFields() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemsNames[0][0]);
-        psp.actionClickCart();
-        CartPage cp = new CartPage(driver);
-        cp.actionClickCheckout();
-        CheckoutInformation co = new CheckoutInformation(driver);
-        co.fillFormAndSubmit(firstName, lastName, zipCode);
-        co.assertEquals(co.getPageTitle(), checkoutOverviewHeader);
+        LoginPage.login(username, password);
+        ProductsPage.actionClickAddByName(itemsNames[0][0]).
+        actionClickCart();
+        CartPage.actionClickCheckout();
+        CheckoutInformation.fillFormAndSubmit(firstName, lastName, zipCode).
+        isPageTitleMatch(checkoutOverviewHeader);
     }
 
+    @Description("The test adds products, proceeds to information page and attempts to proceeds with the given firstName lastNaem and zipCode")
     @Test
     public void tc02_fillOnlyFirstNameField() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemsNames[0][0]);
-        psp.actionClickCart();
-        CartPage cp = new CartPage(driver);
-        cp.actionClickCheckout();
-        CheckoutInformation co = new CheckoutInformation(driver);
-        co.fillFormAndSubmit(firstName, "", "");
-        co.assertEquals(co.returnErrorMsg(), lastNameError);
+        LoginPage.login(username, password);
+        ProductsPage.actionClickAddByName(itemsNames[0][0]).
+        actionClickCart();
+        CartPage.actionClickCheckout();
+        CheckoutInformation.fillFormAndSubmit(firstName, "", "").
+        isErrorMsgMatch(lastNameError);
     }
 
+    @Description("The test adds products, proceeds to information page and attempts to proceeds with the given firstName lastNaem and zipCode")
     @Test
     public void tc03_fillOnlyLastNameField() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemsNames[0][0]);
-        psp.actionClickCart();
-        CartPage cp = new CartPage(driver);
-        cp.actionClickCheckout();
-        CheckoutInformation co = new CheckoutInformation(driver);
-        co.fillFormAndSubmit("", lastName, "");
-        co.assertEquals(co.returnErrorMsg(), firstNameError);
+        LoginPage.login(username, password);
+        ProductsPage.actionClickAddByName(itemsNames[0][0]).
+        actionClickCart();
+        CartPage.actionClickCheckout();
+        CheckoutInformation.fillFormAndSubmit("", lastName, "").
+        isErrorMsgMatch(firstNameError);
     }
 
+    @Description("The test adds products, proceeds to information page and attempts to proceeds with the given firstName lastNaem and zipCode")
     @Test
     public void tc04_fillOnlyZipCodeField() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemsNames[0][0]);
-        psp.actionClickCart();
-        CartPage cp = new CartPage(driver);
-        cp.actionClickCheckout();
-        CheckoutInformation co = new CheckoutInformation(driver);
-        co.fillFormAndSubmit("", "", zipCode);
-        co.assertEquals(co.returnErrorMsg(), firstNameError);
+        LoginPage.login(username, password);
+        ProductsPage.actionClickAddByName(itemsNames[0][0]).
+        actionClickCart();
+        CartPage.actionClickCheckout();
+        CheckoutInformation.fillFormAndSubmit("", "", zipCode).
+        isErrorMsgMatch(firstNameError);
     }
 
+    @Description("The test adds products, proceeds to information page and attempts to proceeds with the given firstName lastNaem and zipCode")
     @Test
     public void tc05_fillOnlyFirstAndLastNameFields() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemsNames[0][0]);
-        psp.actionClickCart();
-        CartPage cp = new CartPage(driver);
-        cp.actionClickCheckout();
-        CheckoutInformation co = new CheckoutInformation(driver);
-        co.fillFormAndSubmit(firstName, lastName, "");
-        co.assertEquals(co.returnErrorMsg(), zipCodeError);
+        LoginPage.login(username, password);
+        ProductsPage.actionClickAddByName(itemsNames[0][0]).
+        actionClickCart();
+        CartPage.actionClickCheckout();
+        CheckoutInformation.fillFormAndSubmit(firstName, lastName, "").
+        isErrorMsgMatch(zipCodeError);
     }
 
+    @Description("The test adds products, proceeds to information page and attempts to proceeds with the given firstName lastNaem and zipCode")
     @Test
     public void tc06_fillOnlyFirstNameZipCodeFields() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemsNames[0][0]);
-        psp.actionClickCart();
-        CartPage cp = new CartPage(driver);
-        cp.actionClickCheckout();
-        CheckoutInformation co = new CheckoutInformation(driver);
-        co.fillFormAndSubmit(firstName, "", zipCode);
-        co.assertEquals(co.returnErrorMsg(), lastNameError);
+        LoginPage.login(username, password);
+        ProductsPage.actionClickAddByName(itemsNames[0][0]).
+        actionClickCart();
+        CartPage.actionClickCheckout();
+        CheckoutInformation.fillFormAndSubmit(firstName, "", zipCode).
+        isErrorMsgMatch(lastNameError);
     }
 
+    @Description("The test adds products, proceeds to information page and attempts to proceeds with the given firstName lastNaem and zipCode")
     @Test
     public void tc07_fillOnlyLastNameAndZipCodeFields() {
-        LoginPage lp = new LoginPage(driver);
-        lp.login(username, password);
-        ProductsPage psp = new ProductsPage(driver);
-        psp.actionClickAddToCartByName(itemsNames[0][0]);
-        psp.actionClickCart();
-        CartPage cp = new CartPage(driver);
-        cp.actionClickCheckout();
-        CheckoutInformation co = new CheckoutInformation(driver);
-        co.fillFormAndSubmit("", lastName, zipCode);
-        co.assertEquals(co.returnErrorMsg(), firstNameError);
+        LoginPage.login(username, password);
+        ProductsPage.actionClickAddByName(itemsNames[0][0]).
+        actionClickCart();
+        CartPage.actionClickCheckout();
+        CheckoutInformation.fillFormAndSubmit("", lastName, zipCode).
+        isErrorMsgMatch(firstNameError);
     }
 }

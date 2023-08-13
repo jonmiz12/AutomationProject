@@ -80,8 +80,9 @@ public class BasePage {
 		js.executeScript("var tmpArguments = arguments;setTimeout(function () {tmpArguments[0].setAttribute('style', '" + originalStyle + "');},200);", element);
 	}
 
-	public void refresh() {
+	public Object refresh() {
 		driver.navigate().refresh();
+		return this;
 	}
 
 	public String returnTextAfterRegex(String text, String pattern) {

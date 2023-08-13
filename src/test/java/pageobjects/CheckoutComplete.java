@@ -1,5 +1,6 @@
 package pageobjects;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,10 +14,9 @@ public class CheckoutComplete extends HeaderAndFooter{
         super(driver);
     }
 
-    public boolean isHeaderdisplayed(String purchaseCompleteHeader) {
-        if (!this.purchaseCompleteHeader.getText().equals(purchaseCompleteHeader)) {
-            return false;
-        }
-        return true;
+    @Description("Verifies if the 'purchase complete' header is displayed")
+    public CheckoutComplete isHeaderdisplayed(String purchaseCompleteHeader) {
+        assert this.purchaseCompleteHeader.getText().equals(purchaseCompleteHeader) : "Actual purchase complete title '"+this.purchaseCompleteHeader.getText()+"' does not match the expected title '"+purchaseCompleteHeader+"'";
+        return this;
     }
 }
