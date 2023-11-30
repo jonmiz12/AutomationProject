@@ -34,6 +34,8 @@ public class BaseTest {
     String lastNameError = "Error: Last Name is required";
     String zipCodeError = "Error: Postal Code is required";
     String checkoutOverviewHeader = "Checkout: Overview";
+
+    String emulatorName = "Pixel_XL_API_33";
     String[] socialLinks = {"linkedin.com/company/sauce-labs",
                             "facebook.com/saucelabs",
                             "twitter.com/saucelabs",};
@@ -65,24 +67,6 @@ public class BaseTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        utils.Utils.runCommandFromFile("startAVD");
-
-//        appium --allow-insecure chromedriver_autodownload
-//        RUn this in cli before executing project
-
-//        Runtime.getRuntime().exec("cd C:\\Users\\username\\AppData\\Local\\Android\\sdk\\emulator");
-//        Runtime.getRuntime().exec("emulator -avd emulator_name");
-//
-//        UiAutomator2Options uiAutomator2Options = new UiAutomator2Options();
-//        uiAutomator2Options.setPlatformName(ANDROID)
-//                .setAutomationName(ANDROID_UIAUTOMATOR2)
-//                .amend(CapabilityType.BROWSER_NAME, "Chrome")
-//                .setDeviceName("Pixel_XL_API_33")
-//                .setUdid("emulator-5554")
-//                .setChromedriverExecutableDir("./utils/ExecutableDirs")
-//                .setChromedriverChromeMappingFile("https://github.com/appium/appium-chromedriver/blob/master/config/mapping.json");
-//        driver = new AndroidDriver(uiAutomator2Options);
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();

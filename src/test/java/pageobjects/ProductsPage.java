@@ -10,6 +10,7 @@ import java.util.List;
 
 public class ProductsPage extends HeaderAndFooter{
 
+//    final static String remove = "[id^='remove']";
     final static String remove = "[id^='remove']";
     final static String add = "[id^='add']";
     @FindBy(css = ".inventory_item")

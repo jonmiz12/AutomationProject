@@ -3,13 +3,79 @@
 <suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Suite1]">
   <test thread-count="5" verbose="0" name="test1(failed)">
     <classes>
-      <class name="tests.t7_PriceCalculation">
+      <class name="tests.t4_BuyProducts">
+        <methods>
+          <include name="tc04_addProductsFromProductPageRemoveSomeAndBuy"/>
+          <include name="TearDown"/>
+          <include name="tc01_addProductsFromProductsPageAndBuy"/>
+          <include name="tc02_addProductsFromProductPageAndBuy"/>
+          <include name="tc03_AddProductsFromProductsPageRemoveSomeAndBuy"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- tests.t4_BuyProducts -->
+      <class name="tests.t6_CheckoutInformationFields">
         <methods>
           <include name="TearDown"/>
+          <include name="tc07_fillOnlyLastNameAndZipCodeFields"/>
+          <include name="tc01_fillAllFields"/>
+          <include name="tc03_fillOnlyLastNameField"/>
+          <include name="tc02_fillOnlyFirstNameField"/>
+          <include name="tc05_fillOnlyFirstAndLastNameFields"/>
+          <include name="tc04_fillOnlyZipCodeField"/>
+          <include name="tc06_fillOnlyFirstNameZipCodeFields"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- tests.t6_CheckoutInformationFields -->
+      <class name="tests.t8_SocialMediaLinks">
+        <methods>
+          <include name="TearDown"/>
+          <include name="tc01_verifySocialMediaLinksInProductPage"/>
+          <include name="tc01_verifySocialMediaLinksInProductsPage"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- tests.t8_SocialMediaLinks -->
+      <class name="tests.t3_RemoveProducts">
+        <methods>
+          <include name="tc01_removeItemsFromProductsPage"/>
+          <include name="TearDown"/>
+          <include name="tc01_removeItemsFromProductPage"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- tests.t3_RemoveProducts -->
+      <class name="tests.t2_AddProducts">
+        <methods>
+          <include name="TearDown"/>
+          <include name="tc01_AddItemsFromProductsPage"/>
+          <include name="tc02_AddItemsFromProductPage"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- tests.t2_AddProducts -->
+      <class name="tests.t1_Login">
+        <methods>
+          <include name="TearDown"/>
+          <include name="tc01_userLogin"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- tests.t1_Login -->
+      <class name="tests.t7_PriceCalculation">
+        <methods>
+          <include name="tc03_AddRemoveAddAndRemoveFromCart"/>
+          <include name="TearDown"/>
+          <include name="tc01_addAndGoStraightToCheckout"/>
+          <include name="tc02_addRemoveAndGoToCheckout"/>
+          <include name="tc04addRemoveAddAndRemoveFromCartRefreshThePageLogOutAndLogInAgain"/>
           <include name="tc05_addRemoveFromCartAndClickCart"/>
           <include name="setup"/>
         </methods>
       </class> <!-- tests.t7_PriceCalculation -->
+      <class name="tests.t5_ContinueShopping">
+        <methods>
+          <include name="TearDown"/>
+          <include name="tc01_addProductsGoToPaymentAndCancel"/>
+          <include name="tc01_addProductsGoToCheckoutAndContinueShopping"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- tests.t5_ContinueShopping -->
     </classes>
   </test> <!-- test1(failed) -->
 </suite> <!-- Failed suite [Suite1] -->
